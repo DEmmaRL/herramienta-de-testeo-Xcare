@@ -8,27 +8,32 @@ import pandas as pd
 pedimentos_totales = set()
 
 # Carga el archivo Excel REPORTE
-df = pd.read_excel('table_12.xlsx')
+df = pd.read_excel('table_reporte.xlsx')
 
+# Extrae las columnas "Sección Aduanal", "Patente" y "Número Pedimento"
+df_extracted = df[['Seccion Aduanera', 'Patente', 'Número Pedimento']]
 # Extrae la columna "Número Pedimento" y conserva solo el último número
-df['Número Pedimento'] = df['Número Pedimento'].astype(str).str.split().str[-1]
-
-# Guarda la columna en un archivo CSV
-df['Número Pedimento'].to_csv('table_reporte.csv', index=False)
-
+df_extracted['Número Pedimento'] = df_extracted['Número Pedimento'].astype(str).str.split().str[-1]
+df_extracted['Seccion Aduanera'] = df['Seccion Aduanera'].astype(str).str.zfill(3)
+# Guarda las columnas en un archivo CSV
+df_extracted.to_csv('table_reporte.csv', index=False)
 
 
 # Lee el archivo CSV
-df = pd.read_csv('table_12.csv')
+df = pd.read_csv('table_31.csv')
 
 # Extrae la columna 'Número Pedimento' y conviértela a números con ceros a la izquierda
 num_pedimentos = df['Número Pedimento'].astype(str).str.zfill(7)
 
-# Crea un nuevo DataFrame con la columna extraída y convertida
-nuevo_df = pd.DataFrame({'Número Pedimento': num_pedimentos})
+# Extrae las columnas "Sección Aduanal", "Patente" y "Número Pedimento"
+df_extracted = df[['Seccion Aduanera', 'Patente', 'Número Pedimento']]
+# Extrae la columna "Número Pedimento" y conserva solo el último número
+df_extracted['Número Pedimento'] = df_extracted['Número Pedimento'].astype(str).str.zfill(7)
+df_extracted['Patente'] = df_extracted['Patente'].astype(str).str.zfill(4)
+df_extracted['Seccion Aduanera'] = df_extracted['Seccion Aduanera'].astype(str).str.zfill(3)
 
-# Guarda el nuevo DataFrame en un archivo CSV
-nuevo_df.to_csv('table_Alex.csv', index=False)
+#Guardemos las columnas en el csv
+df_extracted.to_csv('table_Alex.csv', index=False)
 
 def leer_csv(nombre_archivo):
     valores = []
@@ -55,12 +60,13 @@ def comparar_listas(lista1, lista2):
         recuento2 = recuentos2.get(valor, 0)
         if recuento != recuento2:
             diferencias[valor] = abs(recuento - recuento2)
-
+    contador_total = 0
     # Imprimir los valores que difieren y la cantidad de veces que difieren
     for valor, diferencia in diferencias.items():
         pedimentos_totales.add(valor[0])
         print(f"El valor {valor[0]} difiere {diferencia} veces")
-
+        contador_total = contador_total + diferencia
+    print( f"recuento total es {contador_total}"  )
     nombre_archivo = "test.csv"
 
     with open(nombre_archivo, 'w', newline='') as archivo_csv:
@@ -108,8 +114,10 @@ with open(archivo_txt, 'r') as archivo:
 
 # Extraer los pedimentos del contenido del archivo de texto
 pedimentos_txt = contenido.strip('()\n').split(',')
-
+patente_txt = [valor[0:4] for valor in pedimentos_txt]
+seccion_aduanera_txt = [valor[11:14] for valor in pedimentos_txt]
 pedimentos_txt = [valor[4:11] for valor in pedimentos_txt]
+
 
 
 
@@ -121,7 +129,7 @@ with open(rectificados, 'w', newline='') as archivo_csv:
 
     # Comprobar si los pedimentos encontrados previamente están en el archivo de texto
     for pedimento in pedimentos_totales:
-        if pedimento in pedimentos_txt:
+        if pedimento in pedimentos_txt or pedimento in patente_txt or pedimento in seccion_aduanera_txt:
             a=2
             #print(f"El pedimento {pedimento} se encuentra en el archivo de texto.")
         else:
