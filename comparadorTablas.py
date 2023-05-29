@@ -11,29 +11,41 @@ pedimentos_totales = set()
 df = pd.read_excel('table_reporte.xlsx')
 
 # Extrae las columnas "Sección Aduanal", "Patente" y "Número Pedimento"
-df_extracted = df[['Seccion Aduanera', 'Patente', 'Número Pedimento']]
+df_extracted = df[['Sección Aduanera', 'Patente', 'Número Pedimento']]
 # Extrae la columna "Número Pedimento" y conserva solo el último número
 df_extracted['Número Pedimento'] = df_extracted['Número Pedimento'].astype(str).str.split().str[-1]
-df_extracted['Seccion Aduanera'] = df['Seccion Aduanera'].astype(str).str.zfill(3)
+df_extracted['Sección Aduanera'] = df['Sección Aduanera'].astype(str).str.zfill(3)
 # Guarda las columnas en un archivo CSV
 df_extracted.to_csv('table_reporte.csv', index=False)
 
+# Combinar los campos en una sola columna
+fusion = df_extracted.apply(lambda x: ' '.join(x.astype(str)), axis=1)
+
+# Guardar los campos fusionados en un archivo CSV
+fusion.to_csv('total.csv', index=False)
+
+
 
 # Lee el archivo CSV
-df = pd.read_csv('table_31.csv')
+df = pd.read_csv('181.csv')
 
 # Extrae la columna 'Número Pedimento' y conviértela a números con ceros a la izquierda
 num_pedimentos = df['Número Pedimento'].astype(str).str.zfill(7)
 
 # Extrae las columnas "Sección Aduanal", "Patente" y "Número Pedimento"
-df_extracted = df[['Seccion Aduanera', 'Patente', 'Número Pedimento']]
+df_extracted = df[['Sección Aduanera', 'Patente', 'Número Pedimento']]
 # Extrae la columna "Número Pedimento" y conserva solo el último número
 df_extracted['Número Pedimento'] = df_extracted['Número Pedimento'].astype(str).str.zfill(7)
 df_extracted['Patente'] = df_extracted['Patente'].astype(str).str.zfill(4)
-df_extracted['Seccion Aduanera'] = df_extracted['Seccion Aduanera'].astype(str).str.zfill(3)
+df_extracted['Sección Aduanera'] = df_extracted['Sección Aduanera'].astype(str).str.zfill(3)
 
 #Guardemos las columnas en el csv
 df_extracted.to_csv('table_Alex.csv', index=False)
+
+fusion = df_extracted.apply(lambda x: ' '.join(x.astype(str)), axis=1)
+
+# Guardar los campos fusionados en un archivo CSV
+fusion.to_csv('total_second.csv', index=False)
 
 def leer_csv(nombre_archivo):
     valores = []

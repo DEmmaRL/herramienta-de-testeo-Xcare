@@ -1,13 +1,22 @@
 import pandas as pd
 
-# Lee el archivo CSV
-df = pd.read_excel('tabla_reporte.xlsm')
+# Cargar el archivo CSV
+df_csv = pd.read_csv('table_61.csv')
+df_extracted_csv = df_csv[['Sección Aduanera', 'Patente', 'Número Pedimento']]
+# Cargar el archivo Excel
+df_excel = pd.read_excel('table_reporte.xlsx')
+df_extracted_excel = df_excel[['Sección Aduanera', 'Patente', 'Número Pedimento']]
+# Combinar los datos en un solo DataFrame
+df_combined = pd.concat([df_extracted_csv, df_extracted_excel])
 
-# Extrae la columna 'Número Pedimento' y conviértela a números con ceros a la izquierda
-num_pedimentos = df['Número Pedimento'].astype(str).str.zfill(7)
+# Encontrar los registros duplicados
+duplicados = df_combined[df_combined.duplicated(keep=False)]
 
-# Crea un nuevo DataFrame con la columna extraída y convertida
-nuevo_df = pd.DataFrame({'Número Pedimento': num_pedimentos})
+# Imprimir las filas duplicadas
+if not duplicados.empty:
+    for indice, fila in duplicados.iterrows():
+        print(f"Fila {indice}: {fila}")
 
-# Guarda el nuevo DataFrame en un archivo CSV
-nuevo_df.to_csv('table_reporte.csv', index=False)
+# Imprimir el número total de filas duplicadas
+num_duplicados = len(duplicados)
+print(f"Número total de filas duplicadas: {num_duplicados}")

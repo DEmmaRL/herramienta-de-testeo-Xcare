@@ -1,0 +1,80 @@
+Número: 37111006777480
+Recuento en archivo1: 0
+Recuento en archivo2: 12
+---
+Número: 37111015663480
+Recuento en archivo1: 0
+Recuento en archivo2: 6
+---
+Número: 37111018082480
+Recuento en archivo1: 0
+Recuento en archivo2: 6
+---
+Número: 36941056007750
+Recuento en archivo1: 0
+Recuento en archivo2: 12
+---
+Número: 37111018573480
+Recuento en archivo1: 0
+Recuento en archivo2: 6
+---
+Número: 36941045274750
+Recuento en archivo1: 0
+Recuento en archivo2: 2
+---
+Número: 37111006049480
+Recuento en archivo1: 0
+Recuento en archivo2: 12
+---
+Número: 37111021519480
+Recuento en archivo1: 0
+Recuento en archivo2: 6
+---
+Número: 37110016218480
+Recuento en archivo1: 0
+Recuento en archivo2: 6
+---
+Número: 37111018093480
+Recuento en archivo1: 0
+Recuento en archivo2: 6
+---
+Número: 37111021238480
+Recuento en archivo1: 0
+Recuento en archivo2: 12
+---
+Número: 36941008225640
+Recuento en archivo1: 0
+Recuento en archivo2: 12
+---
+Número: 37111016239480
+Recuento en archivo1: 0
+Recuento en archivo2: 6
+---
+Número: 36941046485750
+Recuento en archivo1: 0
+Recuento en archivo2: 2
+---
+Número: 37111020410480
+Recuento en archivo1: 0
+Recuento en archivo2: 6
+---
+Número: 39891023601070
+Recuento en archivo1: 0
+Recuento en archivo2: 6
+---
+Número: 37111013601480
+Recuento en archivo1: 0
+Recuento en archivo2: 6
+---
+Número: 37111011034480
+Recuento en archivo1: 0
+Recuento en archivo2: 6
+---
+Número: 37111008077480
+Recuento en archivo1: 0
+Recuento en archivo2: 10
+---
+Número: 37111012596480
+Recuento en archivo1: 0
+Recuento en archivo2: 2
+---
