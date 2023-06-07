@@ -8,7 +8,7 @@ import pandas as pd
 pedimentos_totales = set()
 
 ruta_archivo = r'C:\Users\demma\Downloads\Reporte_entregable_de_Auditoria CONTINENTAL 2021.xlsm'
-nombre_hoja = '20.1'
+nombre_hoja = '51'
 numero_fila_encabezado = 1  # Número de fila del encabezado
 
 df = pd.read_excel(ruta_archivo, sheet_name=nombre_hoja, header=numero_fila_encabezado)
@@ -30,7 +30,7 @@ fusion.to_csv('total.csv', index=False)
 
 
 # Lee el archivo CSV
-dfe = pd.read_csv('201.csv')
+dfe = pd.read_csv('51.csv')
 dfe.to_csv('testeo.csv', index=False)
 # Extrae la columna 'Número Pedimento' y conviértela a números con ceros a la izquierda
 num_pedimentos = dfe['Número Pedimento'].astype(str).str.zfill(7)

@@ -8,7 +8,7 @@ import pandas as pd
 pedimentos_totales = set()
 
 ruta_archivo = r'C:\Users\demma\Downloads\Reporte_entregable_de_Auditoria CONTINENTAL 2021.xlsm'
-nombre_hoja = '9.1'
+nombre_hoja = '46'
 numero_fila_encabezado = 1  # Número de fila del encabezado
 
 df = pd.read_excel(ruta_archivo, sheet_name=nombre_hoja, header=numero_fila_encabezado)
@@ -29,14 +29,14 @@ fusion.to_csv('total.csv', index=False)
 
 
 
-columns_to_read = ['RFC', 'Sección Aduanera', 'Patente']
-dfe = pd.read_csv('911.csv', usecols=columns_to_read)
+columns_to_read = ['Número Pedimento', 'Sección Aduanera', 'Patente']
+dfe = pd.read_csv('46.csv', usecols=columns_to_read)
 
 # Crear el DataFrame df_extracted
 df_extracted = pd.DataFrame()
 
 # Extraer las columnas y realizar las modificaciones
-df_extracted['RFC'] = dfe['RFC'].astype(str).str.zfill(4)
+df_extracted['RFC'] = dfe['Número Pedimento'].astype(str).str.zfill(4)
 df_extracted['Sección Aduanera'] = dfe['Sección Aduanera'].astype(str).str.zfill(7)
 df_extracted['Patente'] = dfe['Patente'].astype(str).str.zfill(3)
 
